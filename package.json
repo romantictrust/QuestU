@@ -1,0 +1,44 @@
+{
+  "name": "questu",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "test"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "mongojs": "^2.6.0",
+    "native-base": "^2.12.0",
+    "react": "16.6.3",
+    "react-native": "0.58.5",
+    "react-native-gesture-handler": "^1.0.16",
+    "react-native-keyboard-aware-scroll-view": "^0.8.0",
+    "react-native-vector-icons": "^6.3.0",
+    "react-navigation": "^3.3.0"
+  },
+  "devDependencies": {
+    "babel-core": "7.0.0-bridge.0",
+    "babel-jest": "24.1.0",
+    "jest": "24.1.0",
+    "metro-react-native-babel-preset": "0.52.0",
+    "react-test-renderer": "16.6.3"
+  },
+  "jest": {
+    "preset": "react-native"
+  },
+  "description": "First React-Native project",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "\u0016https://github.com/romantictrust/questu.git"
+  },
+  "keywords": [
+    "React-Native",
+    "QuestU"
+  ],
+  "author": "Vladislav Tsyrkinov",
+  "license": "ISC"
+}
