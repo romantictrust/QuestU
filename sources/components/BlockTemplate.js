@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
-import { withNavigation } from 'react-navigation';
+import { withNavigation } from "react-navigation";
 
 import {
   Card,
@@ -14,24 +14,29 @@ import {
 } from "native-base";
 
 class BlockTemplate extends Component {
+  state = {
+    item: this.props.item
+  };
+
   static defaultProps = {
     likes: 0,
     title: "NO TITLE",
     location: "NO LOCATION",
-    picture: "http://www.childwomenmin.gov.lk/themes/childwomenmin/assets/images/default-image.jpg",
+    picture:
+      "http://www.childwomenmin.gov.lk/themes/childwomenmin/assets/images/default-image.jpg",
     description: "NO DESCRIPTON"
-  } 
+  };
   onQuest = () => {
-    const item = this.props.item
-    this.props.navigation.navigate("QuestScreen", {item: item})
-  }
+    this.props.navigation.navigate("QuestScreen", { item: this.state.item });
+  };
+
   render() {
     return (
       <Card style={styles.cards}>
         <CardItem>
           <Left>
             <Body>
-              <Text style={styles.title}>{this.props.title}</Text>
+              <Text style={styles.title}>{this.state.item.title}</Text>
             </Body>
           </Left>
         </CardItem>
@@ -39,23 +44,24 @@ class BlockTemplate extends Component {
           <Left>
             <Body>
               <Text note style={styles.location}>
-                {this.props.location}
+                {this.state.item.location}
               </Text>
             </Body>
           </Left>
         </CardItem>
         <CardItem>
           <Body>
-          
             <Image
               style={styles.images}
-              source={{ uri: this.props.picture }}
+              source={{ uri: this.state.item.picture }}
             />
           </Body>
         </CardItem>
         <CardItem>
           <Body>
-            <Text style={styles.description}>{this.props.description}</Text>
+            <Text style={styles.description}>
+              {this.state.item.description}
+            </Text>
           </Body>
         </CardItem>
         <CardItem>
@@ -66,14 +72,15 @@ class BlockTemplate extends Component {
             <Button transparent>
               <Icon name="share" size={20} style={styles.icons} />
             </Button>
-            <Button key={this.props.key}
+            <Button
+              key={this.state.item.key}
               onPress={() => this.onQuest()}
               transparent
               style={{ marginLeft: "25.5%" }}
             >
               <Icon name="arrow-up" color="#ff9616" size={24} />
             </Button>
-            <Text style={styles.likes}>Likes {this.props.likes}</Text>
+            <Text style={styles.likes}>Likes {this.state.item.likes}</Text>
           </Left>
         </CardItem>
       </Card>
