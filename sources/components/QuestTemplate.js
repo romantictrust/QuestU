@@ -45,7 +45,7 @@ export default class QuesTemplate extends Component {
             </Body>
           </Left>
         </CardItem>
-        <MapComponent />
+        <MapComponent item={item}/>
         <CardItem>
           <Body>
             <Accordion
@@ -62,7 +62,7 @@ export default class QuesTemplate extends Component {
             </Body>
           </Left>
         </CardItem>
-        <MapWorker />
+        <MapWorker item={item}/>
         <CardItem>
           <Left>
             <Button transparent style={{ marginLeft: "1%" }}>

@@ -10,6 +10,7 @@ export default class MapWorker extends Component {
   }
 
   render() {
+    const item = this.props.item;
     return (
       <CardItem><Body>
             <Button block success onPress={this.getUserLocation}>
