@@ -101,7 +101,7 @@ export const AppStackNavigator = createStackNavigator(
   {
     index: 0,
     headerMode: "none",
-    initialRouteName: "MainTabs",
+    initialRouteName: "LogTabs",
     navigationOptions: {
       gesturesEnabled: false
     }

@@ -1,71 +1,28 @@
 import React, { Component } from "react";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { StyleSheet, TouchableOpacity, Text, View, Image, Button, TextInput} from "react-native";
-
-async function pressSumbit() {
-  const res = await fetch("http://172.30.235.145:8000/api/users");
-  data = await res.json();
-}
-
-async function validateOrder(user) {
-  (async () => {
-    const rawResponse = await fetch(
-      "http://172.30.235.145:8000/api/tocheckdata",
-      {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(user)
-      }
-    );
-    const content = await rawResponse.json();
-  })();
-  if ((await verificationPass()) == 1) {
-    alert("USER VERIFIED");
-    // ()=>this.props.navigation.navigate('MainScreen')
-  } else {
-    alert("USER DENIED");
-  }
-}
-
-async function verificationPass() {
-  const res = await fetch("http://172.30.235.145:8000/api/verificationpass");
-  let answer = await res.json();
-  answer = answer.answer;
-  if (answer != 1) {
-    return 0;
-  } else if (answer == 1) {
-    return 1;
-  }
-}
-
+import {
+  StyleSheet,
+  TouchableOpacity,
+  Text,
+  View,
+  Image,
+  TextInput
+} from "react-native";
+import VerificationWorker from "../sources/components/VerificationWorker";
 
 export default class LoginScreen extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       login: "",
-      password: ""
+      password: "",
     };
   }
-
-  enter = () => {
-    const { login, password } = this.state;
-    var currentUser = {
-      login: login,
-      password: password
-    };
-    pressSumbit();
-    validateOrder(currentUser);
-  };
 
   static navigationOptions = {
     header: null,
-    title: 'LoginScreen'
+    title: "LoginScreen"
   };
-  
   render() {
     return (
       <KeyboardAwareScrollView>
@@ -77,25 +34,27 @@ export default class LoginScreen extends Component {
                 "https://pp.userapi.com/c850124/v850124169/c2212/HoBcxIVzafA.jpg"
             }}
           />
-         <Text style={[styles.basicText, styles.loginTxt]}>Login</Text>
-        <TextInput
-          style={styles.inputs}
-          underlineColorAndroid="transparent"
-          placeholder="Login"
-          autoCapitalize="none"
-          onChangeText={login => this.setState({ login })}
-        />
-        <Text style={[styles.basicText, styles.passTxt]}>Password</Text>
-        <TextInput
-          style={styles.inputs}
-          underlineColorAndroid="transparent"
-          placeholder="Password"
-          autoCapitalize="none"
-          onChangeText={password => this.setState({ password })}
-          secureTextEntry={true}
-        />
-        <Button color="#000" onPress={()=>this.props.navigation.navigate('MainScreen')} title="Sumbit" />
-          <TouchableOpacity onPress={()=>this.props.navigation.navigate('RegScreen')}>
+          <Text style={[styles.basicText, styles.loginTxt]}>Login</Text>
+          <TextInput
+            style={styles.inputs}
+            underlineColorAndroid="transparent"
+            placeholder="Login"
+            autoCapitalize="none"
+            onChangeText={login => this.setState({ login })}
+          />
+          <Text style={[styles.basicText, styles.passTxt]}>Password</Text>
+          <TextInput
+            style={styles.inputs}
+            underlineColorAndroid="transparent"
+            placeholder="Password"
+            autoCapitalize="none"
+            onChangeText={password => this.setState({ password })}
+            secureTextEntry={true}
+          />
+          <VerificationWorker navigation={this.props.navigation} login={this.state.login} password={this.state.password}/>
+          <TouchableOpacity
+            onPress={() => this.props.navigation.navigate("RegScreen")}
+          >
             <Text style={[styles.basicText, styles.register]}>register</Text>
           </TouchableOpacity>
         </View>
