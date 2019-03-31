@@ -2,37 +2,22 @@ import React, { Component } from "react";
 import { View, Button } from "react-native";
 
 export default class VerificationWorker extends Component {
-  constructor() {
-    super()
-    content: {};
-  }
-
-  async pressSumbit() {
-    const res = await fetch("http://172.30.235.145:8000/api/users");
-    data = await res.json();
-  }
-
   async validateOrder(user) {
-    (async () => {
-      const rawResponse = await fetch(
-        "http://172.30.235.145:8000/api/tocheckdata",
-        {
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(user)
+    await fetch("http://172.30.235.145:8000/api/tocheckdata", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(user)
+    })
+      .then(response => response.json())
+      .then(response => {
+        if (!!Number(response.answer)) {
+          this.props.navigation.navigate("MainScreen");
         }
-      );
-      this.setState({ content: await rawResponse.json() });
-      if ((this.state.content.answer) == '1') {
-        alert("USER VERIFIED");
-        this.props.navigation.navigate("MainScreen");
-      } else {
-        alert("USER DENIED");
-      }
-    })();
+        alert(response.message);
+      });
   }
 
   enter = () => {
@@ -40,7 +25,6 @@ export default class VerificationWorker extends Component {
       login: this.props.login,
       password: this.props.password
     };
-    this.pressSumbit();
     this.validateOrder(currentUser);
   };
 

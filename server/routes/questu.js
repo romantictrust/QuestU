@@ -7,7 +7,7 @@ const db = mongojs("mongodb://sipep:sipep1@ds055945.mlab.com:55945/questu", [
 ]);
 
 const usersCol = db.collection("users");
-let global = { answer: "0" };
+let axcess = {answer : '0', message: ''}
 
 router.get("/users", function(req, res, next) {
   db.users.find(function(err, users) {
@@ -19,7 +19,6 @@ router.get("/users", function(req, res, next) {
 });
 
 router.post("/tocheckdata", (req, res) => {
-  let processing = new Promise(function(resolve, reject) {
     const toCheckBody = req.body;
     usersCol.find().toArray(function(err, docs) {
       if (err) throw err;
@@ -35,26 +34,17 @@ router.post("/tocheckdata", (req, res) => {
           userBase[i].login == toCheckBody.login &&
           userBase[i].password == toCheckBody.password
         ) {
-          console.log("OK");
-          global.answer = "1";
+          console.log(" --- USER FOUND --- ");
+          axcess = {answer: '1', message: 'User verified'}
+          res.send(axcess)
           break loop0;
-        } else {
-          console.log("NOT OK");
-          global.answer = "2";
         }
       }
+      if (axcess.answer == '0'){
+        axcess = {answer: '0', message: 'Wrong user'}
+        res.send(axcess)
+      }
     });
-    resolve(global.answer);
-  });
-  processing.then(
-    result => {
-      console.log("GLOBAL: " + result);
-      res.status(200).send(global);
-    },
-    err => {
-      console.log("!ERROR!");
-    }
-  );
 });
 
 router.post("/pushuser", (req, res) => {
