@@ -23,7 +23,7 @@ export default class QuesTemplate extends Component {
     const dataArray = [
       {
         title:
-          "Описание квеста                                                        ",
+          "Описание квеста                                        ",
         content: item.story
       }
     ];
@@ -49,7 +49,6 @@ export default class QuesTemplate extends Component {
         <CardItem>
           <Body>
             <Accordion
-              style={styles.accordion}
               dataArray={dataArray}
               renderContent={this._renderContent}
             />
@@ -111,7 +110,9 @@ const styles = StyleSheet.create({
     backgroundColor: "pink"
   },
   accordion: {
-    fontSize: 17,
+    marginTop: 5,
+    marginLeft: 5,
+    fontSize: 15,
     fontStyle: "italic",
     color: "grey"
   }

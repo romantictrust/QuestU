@@ -29,7 +29,7 @@ class MainScreen extends Component {
   componentDidMount() { this.fetchData(); }
 
   fetchData = () => {
-    return fetch("http://172.30.235.145:8000/api/quests")
+    return fetch("http://192.168.0.100:8000/api/quests")
       .then(response => response.json())
       .then(responseJson => {
         this.setState(
@@ -63,6 +63,7 @@ class MainScreen extends Component {
             />
           }
         >
+          {/* key={item._id} */}
           {this.state.dataSource.map((item, key) => {
             return <BlockTemplate key={key} item={item} />;
           })}

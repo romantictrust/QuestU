@@ -3,7 +3,7 @@ import { View, Button } from "react-native";
 
 export default class VerificationWorker extends Component {
   async validateOrder(user) {
-    await fetch("http://172.30.235.145:8000/api/tocheckdata", {
+    await fetch("http://192.168.0.100:8000/api/tocheckdata", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -13,7 +13,7 @@ export default class VerificationWorker extends Component {
     })
       .then(response => response.json())
       .then(response => {
-        if (!!Number(response.answer)) {
+        if (response.answer == '1') {
           this.props.navigation.navigate("MainScreen");
         }
         alert(response.message);

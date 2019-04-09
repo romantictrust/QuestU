@@ -69,7 +69,6 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "space-evenly",
     alignItems: "center",
-    backgroundColor: "#F5FCFF"
   },
   loginTxt: { marginTop: 160, marginBottom: 13 },
   passTxt: { marginBottom: 13 },
@@ -78,7 +77,8 @@ const styles = StyleSheet.create({
     height: 48,
     width: 240,
     borderRadius: 5,
-    marginBottom: 20
+    marginBottom: 10,
+    marginTop: 5
   },
   basicText: {
     color: "#000",

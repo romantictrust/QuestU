@@ -14,9 +14,10 @@ import {
 } from "native-base";
 
 class BlockTemplate extends Component {
-  state = {
-    item: this.props.item
-  };
+  constructor(props){
+    super(props)
+    this.state = {item: this.props.item}
+  }
 
   static defaultProps = {
     likes: 0,
@@ -24,7 +25,10 @@ class BlockTemplate extends Component {
     location: "NO LOCATION",
     picture:
       "http://www.childwomenmin.gov.lk/themes/childwomenmin/assets/images/default-image.jpg",
-    description: "NO DESCRIPTON"
+    description: "NO DESCRIPTON",
+    score: 0,
+    "latitude": 0,
+    "longitude": 0
   };
   onQuest = () => {
     this.props.navigation.navigate("QuestScreen", { item: this.state.item });
@@ -76,7 +80,7 @@ class BlockTemplate extends Component {
               key={this.state.item.key}
               onPress={() => this.onQuest()}
               transparent
-              style={{ marginLeft: "25.5%" }}
+              style={{ marginLeft: "22%" }}
             >
               <Icon name="arrow-up" color="#ff9616" size={24} />
             </Button>
@@ -108,13 +112,13 @@ const styles = StyleSheet.create({
   title: {
     marginTop: 5,
     color: "#000",
-    fontSize: 23
+    fontSize: 21
   },
   location: {
-    fontSize: 18
+    fontSize: 16
   },
   description: {
-    fontSize: 17,
+    fontSize: 15,
     color: "#000",
     marginLeft: 3
   },

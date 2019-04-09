@@ -10,14 +10,14 @@ import {
 } from "react-native";
 
 async function pressSumbit() {
-  const res = await fetch("http://172.30.235.145:8000/api/users");
+  const res = await fetch("192.168.0.100/api/users");
   data = await res.json();
 }
 
 async function validateOrder(user) {
   (async () => {
     const rawResponse = await fetch(
-      "http://172.30.235.145:8000/api/tocheckdata",
+      "192.168.0.100/api/tocheckdata",
       {
         method: "POST",
         headers: {
@@ -40,7 +40,7 @@ async function validateOrder(user) {
 }
 
 async function verificationPass() {
-  const res = await fetch("http://172.30.235.145:8000/api/verificationpass");
+  const res = await fetch("http://192.168.0.100:8000/api/verificationpass");
   let answer = await res.json();
   answer = answer.answer;
   if (answer != 1) {

@@ -1,5 +1,5 @@
 const port = 8000;
-const adress = "172.30.235.145";
+const adress = "192.168.0.100";
 const express = require("express");
 const bodyParser = require("body-parser");
 const MongoClient = require("mongodb").MongoClient;
