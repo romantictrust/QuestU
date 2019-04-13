@@ -3,7 +3,7 @@ import { View, Button } from "react-native";
 
 export default class VerificationWorker extends Component {
   async validateOrder(user) {
-    await fetch("http://192.168.0.100:8000/api/tocheckdata", {
+    await fetch("https://questu-1553257094787.appspot.com/api/tocheckdata", {
       method: "POST",
       headers: {
         Accept: "application/json",

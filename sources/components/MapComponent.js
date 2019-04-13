@@ -100,7 +100,7 @@ export default class MapComponet extends Component {
               apikey={GOOGLE_MAPS_APIKEY}
               // driving walking
               mode="walking"
-              strokeWidth={3}
+              strokeWidth={4}
               strokeColor="red"
             />
           </MapView>

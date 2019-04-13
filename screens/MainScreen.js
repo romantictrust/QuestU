@@ -29,7 +29,7 @@ class MainScreen extends Component {
   componentDidMount() { this.fetchData(); }
 
   fetchData = () => {
-    return fetch("http://192.168.0.100:8000/api/quests")
+    return fetch("https://questu-1553257094787.appspot.com/api/quests")
       .then(response => response.json())
       .then(responseJson => {
         this.setState(

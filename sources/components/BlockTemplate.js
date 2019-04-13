@@ -21,15 +21,16 @@ class BlockTemplate extends Component {
 
   static defaultProps = {
     likes: 0,
-    title: "NO TITLE",
-    location: "NO LOCATION",
+    title: "",
+    location: "",
     picture:
       "http://www.childwomenmin.gov.lk/themes/childwomenmin/assets/images/default-image.jpg",
-    description: "NO DESCRIPTON",
+    description: "",
     score: 0,
     "latitude": 0,
     "longitude": 0
   };
+  
   onQuest = () => {
     this.props.navigation.navigate("QuestScreen", { item: this.state.item });
   };
