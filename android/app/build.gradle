@@ -135,7 +135,6 @@ android {
 }
 
 dependencies {
-    implementation project(':react-native-barcodescanner')
     implementation project(':react-native-camera')
     implementation project(':react-native-maps')
     implementation project(':react-native-gesture-handler')

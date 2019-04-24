@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { CardItem, Body, Button, Text } from "native-base";
+import QRComponent from "./QRComponent";
 
 export default class MapWorker extends Component {
   constructor(props) {
@@ -9,7 +10,6 @@ export default class MapWorker extends Component {
         latitude: this.props.item.latitude,
         longitude: this.props.item.longitude
       },
-      processed: false,
       initialPosition: {
         latitude: 0,
         longitude: 0
@@ -18,34 +18,36 @@ export default class MapWorker extends Component {
   }
 
   comparator = () => {
-    if ((String(this.state.initialPosition.latitude).substring(0, 6) === String(this.state.questCoords.latitude).substring(0, 6)) &&
-        (String(this.state.initialPosition.longitude).substring(0, 6) === String(this.state.questCoords.longitude).substring(0, 6))){
-          alert("Ready to scan");
-          this.setState({processed: true})
-        }
-    else {alert("You are not in the place")}
+    if (
+      String(this.state.initialPosition.latitude).substring(0, 6) ===
+        String(this.state.questCoords.latitude).substring(0, 6) &&
+      String(this.state.initialPosition.longitude).substring(0, 6) ===
+        String(this.state.questCoords.longitude).substring(0, 6)
+    ) {
+      this.qr.runQR(true);
+    } else {
+      this.qr.runQR(false);
+      alert("You are not in the place");
+    }
   };
 
-  async componentDidMount(){
+  async componentDidMount() {
     await navigator.geolocation.getCurrentPosition(
-        position => {
-          var initLat = parseFloat(position.coords.latitude);
-          var initLon = parseFloat(position.coords.longitude);
+      position => {
+        var initLat = parseFloat(position.coords.latitude);
+        var initLon = parseFloat(position.coords.longitude);
 
-          var initialReg = {
+        this.setState({
+          initialPosition: {
             latitude: initLat,
             longitude: initLon
-          };
-
-          this.setState({ initialPosition: initialReg });
-        },
-        err => alert(JSON.stringify(err)),
-        { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
-      );
-
-}
-
-  runQR = () => {};
+          }
+        });
+      },
+      err => alert(JSON.stringify(err)),
+      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+    );
+  }
 
   render() {
     return (
@@ -54,6 +56,7 @@ export default class MapWorker extends Component {
           <Button block success onPress={this.comparator}>
             <Text>Отсканировать код</Text>
           </Button>
+          <QRComponent onRef={ref => (this.qr = ref)} />
         </Body>
       </CardItem>
     );
