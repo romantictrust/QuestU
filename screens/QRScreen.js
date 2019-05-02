@@ -15,7 +15,9 @@ export default class QRScreen extends Component {
   render() {
     return (
       <View>
-        <QRCodeScanner onRead={this.onSuccess.bind(this)} />
+        <QRCodeScanner onRead={this.onSuccess.bind(this)} 
+        showMarker={true}
+        checkAndroid6Permissions={true}/>
       </View>
     );
   }

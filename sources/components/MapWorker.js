@@ -19,10 +19,10 @@ export default class MapWorker extends Component {
 
   comparator = () => {
     if (
-      String(this.state.initialPosition.latitude).substring(0, 6) ===
-        String(this.state.questCoords.latitude).substring(0, 6) &&
-      String(this.state.initialPosition.longitude).substring(0, 6) ===
-        String(this.state.questCoords.longitude).substring(0, 6)
+      String(this.state.initialPosition.latitude).substring(0, 5) ===
+        String(this.state.questCoords.latitude).substring(0, 5) &&
+      String(this.state.initialPosition.longitude).substring(0, 5) ===
+        String(this.state.questCoords.longitude).substring(0, 5)
     ) {
       this.qr.runQR(true);
     } else {

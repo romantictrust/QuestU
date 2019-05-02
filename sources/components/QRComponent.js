@@ -29,13 +29,7 @@ class QRComponent extends Component {
     }
   };
 
-  render() {
-    const { navigation } = this.props;
-    const qrdata = navigation.getParam("qrdata");
-
-    if(qrdata)
-    alert(qrdata);
-    
+  render() {    
     return <View />;
   }
 }
