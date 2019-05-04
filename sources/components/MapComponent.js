@@ -6,8 +6,6 @@ import MapViewDirections from "react-native-maps-directions";
 
 const { width, height } = Dimensions.get("window");
 
-const SCREEN_HEIGHT = height;
-const SCREEN_WIDTH = width;
 const ASPECT_RATIO = width / height;
 const LATITUDE_DELTA = 0.026;
 const LONGTITUTE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;

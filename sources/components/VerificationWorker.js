@@ -13,7 +13,7 @@ export default class VerificationWorker extends Component {
     })
       .then(response => response.json())
       .then(response => {
-        if (response.answer == '1') {
+        if (response.answer == "1") {
           this.props.navigation.navigate("MainScreen");
         }
         alert(response.message);

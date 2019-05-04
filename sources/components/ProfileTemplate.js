@@ -1,18 +1,6 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, Image } from "react-native";
-import {
-  Container,
-  Content,
-  Card,
-  CardItem,
-  Thumbnail,
-  Body,
-  Left,
-  Right,
-  Center,
-  Button,
-  Accordion
-} from "native-base";
+import { StyleSheet, Text } from "react-native";
+import { Card, CardItem, Body } from "native-base";
 import Icon from "react-native-vector-icons/FontAwesome";
 
 export default class ProfileTemplate extends Component {
@@ -20,8 +8,8 @@ export default class ProfileTemplate extends Component {
     return (
       <Card style={[styles.card, styles.center]}>
         <CardItem style={styles.logo}>
-          <Body style={[styles.icon, styles.center]} >
-          <Icon name="user" color="black" size={200}/>
+          <Body style={[styles.icon, styles.center]}>
+            <Icon name="user" color="black" size={200} />
           </Body>
         </CardItem>
         <CardItem>
@@ -29,10 +17,12 @@ export default class ProfileTemplate extends Component {
             <Text style={styles.userName}>this.props.userName</Text>
           </Body>
         </CardItem>
-        <CardItem >
+        <CardItem>
           <Body>
             <Text style={styles.mainText}>Очки: this.props.userScores</Text>
-            <Text style={styles.mainText}>Достижения: this.props.userScores</Text>
+            <Text style={styles.mainText}>
+              Достижения: this.props.userScores
+            </Text>
           </Body>
         </CardItem>
       </Card>
@@ -42,22 +32,22 @@ export default class ProfileTemplate extends Component {
 
 const styles = StyleSheet.create({
   center: {
-  justifyContent: "center",
-  alignItems: "center",
+    justifyContent: "center",
+    alignItems: "center"
   },
-  logo:{
+  logo: {
     width: 270
   },
   card: {
     width: "100%",
-    height: "100%",
+    height: "100%"
   },
   icon: {
     borderWidth: 3,
     borderColor: "#000",
     borderRadius: 200,
     width: 230,
-    height: 230,
+    height: 230
   },
   userName: {
     textAlign: "center",

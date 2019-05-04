@@ -1,14 +1,5 @@
 import React, { Component } from "react";
 import {
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  AppRegistry,
-  Button,
-  Image
-} from "react-native";
-import {
   Container,
   Content
 } from "native-base";

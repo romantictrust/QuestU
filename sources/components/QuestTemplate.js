@@ -3,7 +3,6 @@ import { StyleSheet, Text, Image } from "react-native";
 import {
   Card,
   CardItem,
-  Thumbnail,
   Body,
   Left,
   Right,
@@ -22,8 +21,7 @@ export default class QuesTemplate extends Component {
     const item = this.props.item;
     const dataArray = [
       {
-        title:
-          "Описание квеста                                        ",
+        title: "Описание квеста                                        ",
         content: item.story
       }
     ];
@@ -45,7 +43,7 @@ export default class QuesTemplate extends Component {
             </Body>
           </Left>
         </CardItem>
-        <MapComponent item={item}/>
+        <MapComponent item={item} />
         <CardItem>
           <Body>
             <Accordion
@@ -61,7 +59,7 @@ export default class QuesTemplate extends Component {
             </Body>
           </Left>
         </CardItem>
-        <MapWorker item={item}/>
+        <MapWorker item={item} />
         <CardItem>
           <Left>
             <Button transparent style={{ marginLeft: "1%" }}>

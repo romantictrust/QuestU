@@ -15,7 +15,7 @@ export default class LoginScreen extends Component {
     super();
     this.state = {
       login: "",
-      password: "",
+      password: ""
     };
   }
 
@@ -51,7 +51,11 @@ export default class LoginScreen extends Component {
             onChangeText={password => this.setState({ password })}
             secureTextEntry={true}
           />
-          <VerificationWorker navigation={this.props.navigation} login={this.state.login} password={this.state.password}/>
+          <VerificationWorker
+            navigation={this.props.navigation}
+            login={this.state.login}
+            password={this.state.password}
+          />
           <TouchableOpacity
             onPress={() => this.props.navigation.navigate("RegScreen")}
           >
@@ -68,7 +72,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
     justifyContent: "space-evenly",
-    alignItems: "center",
+    alignItems: "center"
   },
   loginTxt: { marginTop: 160, marginBottom: 13 },
   passTxt: { marginBottom: 13 },

@@ -1,14 +1,8 @@
 import React, { Component } from "react";
-import {
-  StyleSheet
-} from "react-native";
-import {
-  Container,
-  Content,
-  Text
-} from "native-base";
+import { StyleSheet } from "react-native";
+import { Container, Content, Text } from "native-base";
 import QuestTemplate from "../sources/components/QuestTemplate";
-import OnSuccess from '../sources/components/OnSuccess'
+import OnSuccess from "../sources/components/OnSuccess";
 
 export default class QuestScreen extends Component {
   static navigationOptions = {
@@ -19,21 +13,22 @@ export default class QuestScreen extends Component {
     const item = navigation.getParam("item");
     const qrdata = navigation.getParam("qrdata");
 
-    if(qrdata && String(qrdata).substring(qrdata.length - 5) == "found")
-    return( <Container style={[styles.container]}>
-      <Content>
-      <OnSuccess/>
-      </Content>
-      </Container>);
-
+    if (qrdata && String(qrdata).substring(qrdata.length - 5) == "found")
+      return (
+        <Container style={[styles.container]}>
+          <Content>
+            <OnSuccess />
+          </Content>
+        </Container>
+      );
     else
-    return (
-      <Container style={styles.container}>
-        <Content>
-         <QuestTemplate item={item}/>
-        </Content>
-      </Container>
-    );
+      return (
+        <Container style={styles.container}>
+          <Content>
+            <QuestTemplate item={item} />
+          </Content>
+        </Container>
+      );
   }
 }
 

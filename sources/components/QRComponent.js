@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text } from "native-base";
+import { View } from "native-base";
 import { withNavigation } from "react-navigation";
 
 class QRComponent extends Component {
@@ -18,7 +18,7 @@ class QRComponent extends Component {
     };
   }
 
-  locate(){
+  locate() {
     this.props.navigation.navigate("QRScreen");
   }
 
@@ -29,7 +29,7 @@ class QRComponent extends Component {
     }
   };
 
-  render() {    
+  render() {
     return <View />;
   }
 }

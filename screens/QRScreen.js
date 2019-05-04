@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { StyleSheet } from "react-native";
-import { View, Text, TouchableOpacity } from "native-base";
+import { View } from "native-base";
 import QRCodeScanner from "react-native-qrcode-scanner";
 
 export default class QRScreen extends Component {
@@ -9,15 +9,17 @@ export default class QRScreen extends Component {
   };
 
   onSuccess(e) {
-    this.props.navigation.navigate("QuestScreen",{ qrdata: e.data });
+    this.props.navigation.navigate("QuestScreen", { qrdata: e.data });
   }
 
   render() {
     return (
       <View>
-        <QRCodeScanner onRead={this.onSuccess.bind(this)} 
-        showMarker={true}
-        checkAndroid6Permissions={true}/>
+        <QRCodeScanner
+          onRead={this.onSuccess.bind(this)}
+          showMarker={true}
+          checkAndroid6Permissions={true}
+        />
       </View>
     );
   }

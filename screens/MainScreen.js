@@ -26,7 +26,9 @@ class MainScreen extends Component {
     });
   };
 
-  componentDidMount() { this.fetchData(); }
+  componentDidMount() {
+    this.fetchData();
+  }
 
   fetchData = () => {
     return fetch("https://questu-1553257094787.appspot.com/api/quests")

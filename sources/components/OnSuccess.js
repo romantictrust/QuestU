@@ -20,17 +20,17 @@ const styles = StyleSheet.create({
   cards: {
     width: "99%",
     height: 500,
-    backgroundColor: "#15a52d",
+    backgroundColor: "#15a52d"
   },
   block: {
     marginTop: "50%"
   },
-  icons:{
-      color: "white",
+  icons: {
+    color: "white"
   },
   text: {
     marginTop: "5%",
-      color: "white",
-      fontSize: 25
+    color: "white",
+    fontSize: 25
   }
 });

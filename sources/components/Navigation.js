@@ -11,9 +11,7 @@ import RegScreen from "../../screens/RegScreen";
 import AchievementsScreen from "../../screens/AchievementsScreen";
 import ProfileScreen from "../../screens/ProfileScreen";
 import QuestScreen from "../../screens/QuestScreen";
-import QRScreen from '../../screens/QRScreen'
-
-let tintColor = "#E0F7FA";
+import QRScreen from "../../screens/QRScreen";
 
 export const LogTabs = createStackNavigator(
   {
@@ -32,33 +30,29 @@ export const LogTabs = createStackNavigator(
   }
 );
 
-export const QuestTabs = createStackNavigator(
-  {
-    MainScreen: {
-      screen: MainScreen,
-      navigationOptions: {
-        header: null
-      }
-    },
-    QuestScreen: {
-      screen: QuestScreen
-    },
-    QRScreen: {
-      screen: QRScreen
+export const QuestTabs = createStackNavigator({
+  MainScreen: {
+    screen: MainScreen,
+    navigationOptions: {
+      header: null
     }
+  },
+  QuestScreen: {
+    screen: QuestScreen
+  },
+  QRScreen: {
+    screen: QRScreen
   }
-);
+});
 
-export const QRTabs = createStackNavigator(
-  {
-    QuestScreen: {
-      screen: QuestScreen
-    },
-    QRScreen: {
-      screen: QRScreen
-    }
+export const QRTabs = createStackNavigator({
+  QuestScreen: {
+    screen: QuestScreen
+  },
+  QRScreen: {
+    screen: QRScreen
   }
-);
+});
 
 export const MainTabs = createBottomTabNavigator(
   {
@@ -110,12 +104,12 @@ export const MainTabs = createBottomTabNavigator(
 export const AppStackNavigator = createStackNavigator(
   {
     LogTabs: { screen: LogTabs },
-    MainTabs: { screen: MainTabs },
+    MainTabs: { screen: MainTabs }
   },
   {
     index: 0,
     headerMode: "none",
-    initialRouteName: "MainTabs",
+    initialRouteName: "LogTabs",
     navigationOptions: {
       gesturesEnabled: false
     }

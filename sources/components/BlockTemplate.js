@@ -1,22 +1,13 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
+import { Text, StyleSheet, Image } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { withNavigation } from "react-navigation";
-
-import {
-  Card,
-  CardItem,
-  Thumbnail,
-  Body,
-  Left,
-  Right,
-  Button
-} from "native-base";
+import { Card, CardItem, Body, Left, Button } from "native-base";
 
 class BlockTemplate extends Component {
-  constructor(props){
-    super(props)
-    this.state = {item: this.props.item}
+  constructor(props) {
+    super(props);
+    this.state = { item: this.props.item };
   }
 
   static defaultProps = {
@@ -27,10 +18,10 @@ class BlockTemplate extends Component {
       "http://www.childwomenmin.gov.lk/themes/childwomenmin/assets/images/default-image.jpg",
     description: "",
     score: 0,
-    "latitude": 0,
-    "longitude": 0
+    latitude: 0,
+    longitude: 0
   };
-  
+
   onQuest = () => {
     this.props.navigation.navigate("QuestScreen", { item: this.state.item });
   };
