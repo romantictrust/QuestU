@@ -4,33 +4,43 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 
 function pushUser(user) {
   (async () => {
-    const rawResponse = await fetch("https://questu-1553257094787.appspot.com/api/pushuser", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(user)
-    });
+    const rawResponse = await fetch(
+      "https://questu-1553257094787.appspot.com/api/pushuser",
+      {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(user)
+      }
+    );
     const content = await rawResponse.json();
   })();
-  alert("registered");
 }
+
+const emailRegExp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+const loginRegExp = /^[a-zA-Z0-9]{5,19}$/;
+const passwordRegExp = /^[a-zA-Z0-9]{5,19}$/;
+const nameRegExp = /^[a-zA-Z]{2,19}$/;
 
 export default class RegScreen extends Component {
   static navigationOptions = {
     title: "RegScreen"
   };
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       email: "",
       login: "",
       password: "",
-      name: ""
+      name: "",
+      message: "",
+      error: ""
     };
   }
   sumbitReg = () => {
+    setTimeout(() => this.setState({ message: "" }));
     const { email, login, password, name } = this.state;
     var user = {
       email: email,
@@ -38,7 +48,23 @@ export default class RegScreen extends Component {
       password: password,
       name: name
     };
-    pushUser(user);
+    this.verifier(user);
+    if (this.state.message == "Registered") {
+      pushUser(user);
+    }
+  };
+  verifier = user => {
+    console.log(this.state);
+    if (!emailRegExp.test(user.email))
+      this.setState({ error: "Invalid Email" });
+    else if (!loginRegExp.test(user.login))
+      this.setState({ error: "Invalid Login" });
+    else if (!passwordRegExp.test(user.password))
+      this.setState({ error: "Invalid Password" });
+    else if (!nameRegExp.test(user.name))
+      this.setState({ error: "Invalid Name" });
+    else this.setState({ error: "Registered" });
+    setTimeout(() => this.setState({ message: this.state.error }));
   };
   render() {
     return (
@@ -48,7 +74,6 @@ export default class RegScreen extends Component {
           <Text style={[styles.basicText, styles.emailTxt]}>Email</Text>
           <TextInput
             style={styles.inputs}
-            underlineColorAndroid="transparent"
             placeholder="Email"
             autoCapitalize="none"
             onChangeText={email => this.setState({ email })}
@@ -56,7 +81,6 @@ export default class RegScreen extends Component {
           <Text style={[styles.basicText, styles.loginTxt]}>Login</Text>
           <TextInput
             style={styles.inputs}
-            underlineColorAndroid="transparent"
             placeholder="Login"
             autoCapitalize="none"
             onChangeText={login => this.setState({ login })}
@@ -64,7 +88,6 @@ export default class RegScreen extends Component {
           <Text style={[styles.basicText, styles.passTxt]}>Password</Text>
           <TextInput
             style={styles.inputs}
-            underlineColorAndroid="transparent"
             placeholder="Password"
             autoCapitalize="none"
             onChangeText={password => this.setState({ password })}
@@ -72,11 +95,11 @@ export default class RegScreen extends Component {
           <Text style={[styles.basicText, styles.nameTxt]}>Name</Text>
           <TextInput
             style={styles.inputs}
-            underlineColorAndroid="transparent"
             placeholder="Name"
             autoCapitalize="none"
             onChangeText={name => this.setState({ name })}
           />
+          <Text style={[styles.message]}>{this.state.message}</Text>
           <Button color="#000" onPress={this.sumbitReg} title="Sumbit" />
         </View>
       </KeyboardAwareScrollView>
@@ -98,15 +121,16 @@ const styles = StyleSheet.create({
   passTxt: { marginBottom: 13 },
   inputs: {
     borderWidth: 2,
-    height: 48,
+    height: 45,
     width: 240,
     borderRadius: 5,
     marginBottom: 20
   },
   basicText: {
     color: "#000",
-    fontSize: 22,
+    fontSize: 21,
     fontWeight: "600"
   },
-  register: { color: "#000", marginTop: "10%", fontSize: 29, fontWeight: "800" }
+  message: { color: "red", fontSize: 14, marginBottom: "5%" },
+  register: { color: "#000", marginTop: "5%", fontSize: 29, fontWeight: "800" }
 });

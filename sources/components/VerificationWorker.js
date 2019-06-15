@@ -16,7 +16,6 @@ export default class VerificationWorker extends Component {
         if (response.answer == "1") {
           this.props.navigation.navigate("MainScreen");
         }
-        alert(response.message);
       });
   }
 
