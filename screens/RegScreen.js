@@ -4,7 +4,7 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 
 function pushUser(user) {
   (async () => {
-    const rawResponse = await fetch("http://172.30.235.145:8000/api/pushuser", {
+    const rawResponse = await fetch("https://questu-1553257094787.appspot.com/api/pushuser", {
       method: "POST",
       headers: {
         Accept: "application/json",

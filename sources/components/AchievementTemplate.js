@@ -19,9 +19,8 @@ export default class AchievementTemplate extends Component {
         </CardItem>
         <CardItem>
           <Body>
-            <Text style={styles.mainText}>Очки: this.props.userScores</Text>
             <Text style={styles.mainText}>
-              Достижения: this.props.userScores
+              Достижения: 0
             </Text>
           </Body>
         </CardItem>

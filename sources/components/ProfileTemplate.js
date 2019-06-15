@@ -14,15 +14,12 @@ export default class ProfileTemplate extends Component {
         </CardItem>
         <CardItem>
           <Body style={styles.center}>
-            <Text style={styles.userName}>this.props.userName</Text>
+            <Text style={styles.userName}>Пользователь</Text>
           </Body>
         </CardItem>
         <CardItem>
           <Body>
-            <Text style={styles.mainText}>Очки: this.props.userScores</Text>
-            <Text style={styles.mainText}>
-              Достижения: this.props.userScores
-            </Text>
+            <Text style={styles.mainText}>Очки: 0</Text>
           </Body>
         </CardItem>
       </Card>
