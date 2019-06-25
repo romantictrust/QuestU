@@ -58,3 +58,6 @@ buck-out/
 # Под вопросом 
 /build/intermediates/merged_manifests/debug/processDebugManifest/merged
 AndroidManifest.xml
+
+# Тут вопросов нет :)
+./Globals.js

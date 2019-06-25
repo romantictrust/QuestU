@@ -1,11 +1,13 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View, TextInput, Button } from "react-native";
+import { Text, View, TextInput, Button } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import GLOBALS from "../Globals";
+import { colorStyle, containerStyle, fontStyle, inputStyle, imputsMargin} from "../Styles";
 
 function pushUser(user) {
   (async () => {
     const rawResponse = await fetch(
-      "https://questu-1553257094787.appspot.com/api/pushuser",
+      `${GLOBALS.HOSTING_URL}/api/pushuser`,
       {
         method: "POST",
         headers: {
@@ -19,10 +21,10 @@ function pushUser(user) {
   })();
 }
 
-const emailRegExp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-const loginRegExp = /^[a-zA-Z0-9]{5,19}$/;
-const passwordRegExp = /^[a-zA-Z0-9]{5,19}$/;
-const nameRegExp = /^[a-zA-Z]{2,19}$/;
+const emailRegExp = GLOBALS.VERIFICATORS.EMAIL_REG_EXP;
+const loginRegExp = GLOBALS.VERIFICATORS.LOGIN_REG_EXP;
+const passwordRegExp = GLOBALS.VERIFICATORS.PASSWORD_REG_EXP;
+const nameRegExp = GLOBALS.VERIFICATORS.NAME_REG_EXP;
 
 export default class RegScreen extends Component {
   static navigationOptions = {
@@ -54,7 +56,6 @@ export default class RegScreen extends Component {
     }
   };
   verifier = user => {
-    console.log(this.state);
     if (!emailRegExp.test(user.email))
       this.setState({ error: "Invalid Email" });
     else if (!loginRegExp.test(user.login))
@@ -69,68 +70,41 @@ export default class RegScreen extends Component {
   render() {
     return (
       <KeyboardAwareScrollView>
-        <View style={styles.container}>
-          <Text style={[styles.register]}>Registration</Text>
-          <Text style={[styles.basicText, styles.emailTxt]}>Email</Text>
+        <View style={containerStyle}>
+          <Text style={[fontStyle.boldText, {marginTop: "5%", fontSize: 29}]}>Registration</Text>
+          <Text style={[fontStyle.boldText, imputsMargin, {marginTop: 50}]}>Email</Text>
           <TextInput
-            style={styles.inputs}
+            style={inputStyle}
             placeholder="Email"
             autoCapitalize="none"
             onChangeText={email => this.setState({ email })}
           />
-          <Text style={[styles.basicText, styles.loginTxt]}>Login</Text>
+          <Text style={[fontStyle.boldText, imputsMargin]}>Login</Text>
           <TextInput
-            style={styles.inputs}
+            style={inputStyle}
             placeholder="Login"
             autoCapitalize="none"
             onChangeText={login => this.setState({ login })}
           />
-          <Text style={[styles.basicText, styles.passTxt]}>Password</Text>
+          <Text style={[fontStyle.boldText, imputsMargin]}>Password</Text>
           <TextInput
-            style={styles.inputs}
+            style={inputStyle}
             placeholder="Password"
             autoCapitalize="none"
             onChangeText={password => this.setState({ password })}
           />
-          <Text style={[styles.basicText, styles.nameTxt]}>Name</Text>
+          <Text style={[fontStyle.boldText, imputsMargin]}>Name</Text>
           <TextInput
-            style={styles.inputs}
+            style={inputStyle}
             placeholder="Name"
             autoCapitalize="none"
             onChangeText={name => this.setState({ name })}
           />
-          <Text style={[styles.message]}>{this.state.message}</Text>
-          <Button color="#000" onPress={this.sumbitReg} title="Sumbit" />
+          <Text style={[{color: 'red', fontSize: fontStyle.sm, marginBottom: '5%'}]}>{this.state.message}</Text>
+          <Button color={colorStyle.black} onPress={this.sumbitReg} title="Sumbit" />
         </View>
       </KeyboardAwareScrollView>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: "column",
-    justifyContent: "space-evenly",
-    alignItems: "center",
-    backgroundColor: "#F5FCFF"
-  },
-  nameTxt: { marginBottom: 13 },
-  emailTxt: { marginTop: 50, marginBottom: 13 },
-  loginTxt: { marginBottom: 13 },
-  passTxt: { marginBottom: 13 },
-  inputs: {
-    borderWidth: 2,
-    height: 45,
-    width: 240,
-    borderRadius: 5,
-    marginBottom: 20
-  },
-  basicText: {
-    color: "#000",
-    fontSize: 21,
-    fontWeight: "600"
-  },
-  message: { color: "red", fontSize: 14, marginBottom: "5%" },
-  register: { color: "#000", marginTop: "5%", fontSize: 29, fontWeight: "800" }
-});

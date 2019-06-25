@@ -1,8 +1,10 @@
 import React, { Component } from "react";
-import { Text, StyleSheet, Image } from "react-native";
+import { Text, Image } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { withNavigation } from "react-navigation";
 import { Card, CardItem, Body, Left, Button } from "native-base";
+import GLOBALS from "../../Globals";
+import { colorStyle, fontStyle, BlockTemplateStyle } from "../../Styles"
 
 class BlockTemplate extends Component {
   constructor(props) {
@@ -14,8 +16,7 @@ class BlockTemplate extends Component {
     likes: 0,
     title: "",
     location: "",
-    picture:
-      "http://www.childwomenmin.gov.lk/themes/childwomenmin/assets/images/default-image.jpg",
+    picture: GLOBALS.NO_PICTURE,
     description: "",
     score: 0,
     latitude: 0,
@@ -28,18 +29,18 @@ class BlockTemplate extends Component {
 
   render() {
     return (
-      <Card style={styles.cards}>
+      <Card style={BlockTemplateStyle.cardStyle}>
         <CardItem>
           <Left>
             <Body>
-              <Text style={styles.title}>{this.state.item.title}</Text>
+              <Text style={[fontStyle.title, {marginTop: 5,}]}>{this.state.item.title}</Text>
             </Body>
           </Left>
         </CardItem>
         <CardItem style={{ height: 10 }}>
           <Left>
             <Body>
-              <Text note style={styles.location}>
+              <Text note style={{fontSize: fontStyle.md}}>
                 {this.state.item.location}
               </Text>
             </Body>
@@ -48,14 +49,14 @@ class BlockTemplate extends Component {
         <CardItem>
           <Body>
             <Image
-              style={styles.images}
+              style={BlockTemplateStyle.cardImageStyle}
               source={{ uri: this.state.item.picture }}
             />
           </Body>
         </CardItem>
         <CardItem>
           <Body>
-            <Text style={styles.description}>
+            <Text style={[fontStyle.description, {marginLeft: 3}]}>
               {this.state.item.description}
             </Text>
           </Body>
@@ -63,10 +64,10 @@ class BlockTemplate extends Component {
         <CardItem>
           <Left>
             <Button transparent style={{ marginLeft: "1%" }}>
-              <Icon name="heart" size={20} style={styles.icons} />
+              <Icon name="heart" size={20}/>
             </Button>
             <Button transparent>
-              <Icon name="share" size={20} style={styles.icons} />
+              <Icon name="share" size={20}/>
             </Button>
             <Button
               key={this.state.item.key}
@@ -74,9 +75,9 @@ class BlockTemplate extends Component {
               transparent
               style={{ marginLeft: "22%" }}
             >
-              <Icon name="arrow-up" color="#ff9616" size={24} />
+              <Icon name="arrow-up" color={colorStyle.orange} size={24} />
             </Button>
-            <Text style={styles.likes}>Likes {this.state.item.likes}</Text>
+            <Text style={{fontSize: fontStyle.md,paddingLeft: "23%"}}>Likes {this.state.item.likes}</Text>
           </Left>
         </CardItem>
       </Card>
@@ -85,37 +86,3 @@ class BlockTemplate extends Component {
 }
 
 export default withNavigation(BlockTemplate);
-
-const styles = StyleSheet.create({
-  cards: {
-    width: "96%",
-    marginLeft: "2%",
-    top: 4,
-    borderColor: "#f0f0",
-    borderBottomEndRadius: 10,
-    borderBottomStartRadius: 5,
-    marginBottom: 10
-  },
-  images: {
-    width: "100%",
-    height: 255,
-    flex: 1
-  },
-  title: {
-    marginTop: 5,
-    color: "#000",
-    fontSize: 21
-  },
-  location: {
-    fontSize: 16
-  },
-  description: {
-    fontSize: 15,
-    color: "#000",
-    marginLeft: 3
-  },
-  likes: {
-    paddingLeft: "23%",
-    fontSize: 16
-  }
-});

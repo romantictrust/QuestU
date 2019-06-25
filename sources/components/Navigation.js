@@ -12,6 +12,7 @@ import AchievementsScreen from "../../screens/AchievementsScreen";
 import ProfileScreen from "../../screens/ProfileScreen";
 import QuestScreen from "../../screens/QuestScreen";
 import QRScreen from "../../screens/QRScreen";
+import { colorStyle } from "../../Styles";
 
 export const LogTabs = createStackNavigator(
   {
@@ -86,15 +87,11 @@ export const MainTabs = createBottomTabNavigator(
     headerMode: "none",
     tabBarOptions: {
       showLabel: false,
-      activeTintColor: "#E0F7FA",
-      activeBackgroundColor: "#00ACC1",
-      inactiveTintColor: "#80DEEA",
-      labelStyle: {
-        fontSize: 20,
-        marginBottom: "5%"
-      },
+      activeTintColor: colorStyle.activeTintColor,
+      activeBackgroundColor: colorStyle.activeBackgroundColor,
+      inactiveTintColor: colorStyle.inactiveTintColor,
       style: {
-        backgroundColor: "#00BCD4",
+        backgroundColor: colorStyle.tabBarBackground,
         height: 50
       }
     }

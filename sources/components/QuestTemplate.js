@@ -1,21 +1,19 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, Image } from "react-native";
-import {
-  Card,
-  CardItem,
-  Body,
-  Left,
-  Right,
-  Button,
-  Accordion
-} from "native-base";
+import { Text } from "react-native";
+import { Card, CardItem, Body, Left, Button, Accordion } from "native-base";
 import Icon from "react-native-vector-icons/FontAwesome";
 import MapComponent from "./MapComponent";
 import MapWorker from "./MapWorker";
 
+import { dimensions, fontStyle, accordion } from "../../Styles";
+
 export default class QuesTemplate extends Component {
   _renderContent(item) {
-    return <Text style={styles.accordion}>{item.content}</Text>;
+    return (
+      <Text style={[accordion, { fontSize: fontStyle.md }]}>
+        {item.content}
+      </Text>
+    );
   }
   render() {
     const item = this.props.item;
@@ -26,18 +24,18 @@ export default class QuesTemplate extends Component {
       }
     ];
     return (
-      <Card style={styles.cards}>
+      <Card style={ dimensions.fullWidth }>
         <CardItem>
           <Left>
             <Body>
-              <Text style={styles.title}>{item.title}</Text>
+              <Text style={fontStyle.title}>{item.title}</Text>
             </Body>
           </Left>
         </CardItem>
         <CardItem style={{ height: 10 }}>
           <Left>
             <Body>
-              <Text note style={styles.location}>
+              <Text note style={{ fontSize: fontStyle.md }}>
                 {item.location}
               </Text>
             </Body>
@@ -63,55 +61,17 @@ export default class QuesTemplate extends Component {
         <CardItem>
           <Left>
             <Button transparent style={{ marginLeft: "1%" }}>
-              <Icon name="heart" size={20} style={styles.icons} />
+              <Icon name="heart" size={20} />
             </Button>
             <Button transparent>
-              <Icon name="share" size={20} style={styles.icons} />
+              <Icon name="share" size={20} />
             </Button>
-            <Text style={styles.likes}>Likes {item.likes}</Text>
+            <Text style={[{ fontSize: fontStyle.md, paddingLeft: "60%" }]}>
+              Likes {item.likes}
+            </Text>
           </Left>
         </CardItem>
       </Card>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  cards: {
-    width: "100%",
-    height: "100%"
-  },
-  images: {
-    width: "100%",
-    height: 255,
-    flex: 1
-  },
-  title: {
-    marginTop: 5,
-    color: "#000",
-    fontSize: 23
-  },
-  location: {
-    fontSize: 18
-  },
-  description: {
-    fontSize: 17,
-    color: "#000",
-    marginLeft: 3
-  },
-  likes: {
-    paddingLeft: "61%",
-    fontSize: 16
-  },
-  map: {
-    height: 375,
-    backgroundColor: "pink"
-  },
-  accordion: {
-    marginTop: 5,
-    marginLeft: 5,
-    fontSize: 15,
-    fontStyle: "italic",
-    color: "grey"
-  }
-});

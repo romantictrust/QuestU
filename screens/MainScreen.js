@@ -1,13 +1,12 @@
 import React, { Component } from "react";
 import {
-  StyleSheet,
   View,
   ActivityIndicator,
   RefreshControl
 } from "react-native";
 import { Container, Content } from "native-base";
 import BlockTemplate from "../sources/components/BlockTemplate";
-import QuestTabs from "../sources/components/Navigation";
+import GLOBALS from "../Globals";
 
 class MainScreen extends Component {
   static navigationOptions = {
@@ -31,7 +30,7 @@ class MainScreen extends Component {
   }
 
   fetchData = () => {
-    return fetch("https://questu-1553257094787.appspot.com/api/quests")
+    return fetch(`${GLOBALS.HOSTING_URL}/api/quests`)
       .then(response => response.json())
       .then(responseJson => {
         this.setState(
@@ -56,7 +55,12 @@ class MainScreen extends Component {
       );
     }
     return (
-      <Container style={styles.container}>
+      <Container
+        style={{
+          flex: 1,
+          backgroundColor: "#d4d4d6"
+        }}
+      >
         <Content
           refreshControl={
             <RefreshControl
@@ -76,9 +80,3 @@ class MainScreen extends Component {
 }
 export default MainScreen;
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#d4d4d6"
-  }
-});

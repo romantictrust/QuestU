@@ -1,58 +1,29 @@
 import React, { Component } from "react";
-import { StyleSheet, Text } from "react-native";
+import { Text } from "react-native";
 import { Card, CardItem, Body } from "native-base";
 import Icon from "react-native-vector-icons/FontAwesome";
+import { centrify, dimensions, fontStyle, BasePageTemplateStyle } from "../../Styles"
 
 export default class ProfileTemplate extends Component {
   render() {
     return (
-      <Card style={[styles.card, styles.center]}>
-        <CardItem style={styles.logo}>
-          <Body style={[styles.icon, styles.center]}>
+      <Card style={[{height: '100%'}, dimensions.fullHeight, centrify]}>
+        <CardItem style={BasePageTemplateStyle.logo}>
+          <Body style={[BasePageTemplateStyle.icon, centrify]}>
             <Icon name="user" color="black" size={200} />
           </Body>
         </CardItem>
         <CardItem>
-          <Body style={styles.center}>
-            <Text style={styles.userName}>Пользователь</Text>
+          <Body style={centrify}>
+            <Text style={fontStyle.title}>Пользователь</Text>
           </Body>
         </CardItem>
         <CardItem>
           <Body>
-            <Text style={styles.mainText}>Очки: 0</Text>
+            <Text style={{fontSize: fontStyle.md}}>Очки: 0</Text>
           </Body>
         </CardItem>
       </Card>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  center: {
-    justifyContent: "center",
-    alignItems: "center"
-  },
-  logo: {
-    width: 270
-  },
-  card: {
-    width: "100%",
-    height: "100%"
-  },
-  icon: {
-    borderWidth: 3,
-    borderColor: "#000",
-    borderRadius: 200,
-    width: 230,
-    height: 230
-  },
-  userName: {
-    textAlign: "center",
-    color: "#000",
-    fontSize: 23
-  },
-  mainText: {
-    fontSize: 17,
-    paddingTop: 5
-  }
-});

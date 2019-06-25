@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet } from "react-native";
-import { Container, Content, Text } from "native-base";
+import { Container, Content} from "native-base";
 import QuestTemplate from "../sources/components/QuestTemplate";
 import OnSuccess from "../sources/components/OnSuccess";
 
@@ -15,7 +14,7 @@ export default class QuestScreen extends Component {
 
     if (qrdata && String(qrdata).substring(qrdata.length - 5) == "found")
       return (
-        <Container style={[styles.container]}>
+      <Container style={{flex: 1}}>
           <Content>
             <OnSuccess />
           </Content>
@@ -23,7 +22,7 @@ export default class QuestScreen extends Component {
       );
     else
       return (
-        <Container style={styles.container}>
+        <Container style={{flex: 1}}>
           <Content>
             <QuestTemplate item={item} />
           </Content>
@@ -31,10 +30,3 @@ export default class QuestScreen extends Component {
       );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#d4d4d6"
-  }
-});

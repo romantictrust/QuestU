@@ -3,6 +3,7 @@ import { CardItem, Body } from "native-base";
 import { StyleSheet, Dimensions } from "react-native";
 import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
 import MapViewDirections from "react-native-maps-directions";
+import GLOBALS from "../../Globals";
 
 const { width, height } = Dimensions.get("window");
 
@@ -68,14 +69,14 @@ export default class MapComponet extends Component {
   }
 
   render() {
-    const GOOGLE_MAPS_APIKEY = "AIzaSyB2JLf08WBJ9takbdrl8DQhoS-mBK_XA_0";
+    const GOOGLE_MAPS_APIKEY = GLOBALS.GOOGLE_MAPS_APIKEY;
 
     return (
-      <CardItem style={styles.mapBox}>
-        <Body style={styles.mapBody}>
+      <CardItem style={{ height: 375, marginTop: "3%" }}>
+        <Body style={{ ...StyleSheet.absoluteFillObject }}>
           <MapView
             provider={PROVIDER_GOOGLE}
-            style={styles.map}
+            style={{ ...StyleSheet.absoluteFillObject }}
             region={this.state.initialPosition}
             followUserLocation
             loadingEnabled
@@ -107,9 +108,3 @@ export default class MapComponet extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  mapBox: { height: 375, marginTop: "3%" },
-  mapBody: { ...StyleSheet.absoluteFillObject },
-  map: { ...StyleSheet.absoluteFillObject }
-});

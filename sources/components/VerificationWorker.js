@@ -1,9 +1,19 @@
 import React, { Component } from "react";
-import { View, Button } from "react-native";
+import { View, Button, Text } from "react-native";
+import GLOBALS from "../../Globals";
+import {messageStyle} from "../../Styles";
 
 export default class VerificationWorker extends Component {
+
+constructor(){
+  super();
+  this.state = {
+    message: "",
+  }
+}
+
   async validateOrder(user) {
-    await fetch("https://questu-1553257094787.appspot.com/api/tocheckdata", {
+    await fetch(`${GLOBALS.HOSTING_URL}/api/tocheckdata`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -13,13 +23,16 @@ export default class VerificationWorker extends Component {
     })
       .then(response => response.json())
       .then(response => {
+        console.log(response);
         if (response.answer == "1") {
           this.props.navigation.navigate("MainScreen");
         }
+        else setTimeout(() => {this.setState({message: "Wrong Login or Password"})})
       });
   }
 
   enter = () => {
+    console.log("CLICK")
     var currentUser = {
       login: this.props.login,
       password: this.props.password
@@ -35,6 +48,7 @@ export default class VerificationWorker extends Component {
   render() {
     return (
       <View>
+        <Text style={[messageStyle]}>{this.state.message}</Text>
         <Button color="#000" onPress={() => this.enter()} title="Sumbit" />
       </View>
     );
